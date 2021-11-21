@@ -10,7 +10,7 @@ public class JellyMesh : MonoBehaviour
     public float damping = 0.75f;
 
     private Mesh OriginalMesh, MeshClone;
-    private MeshRenderer renderer;
+     MeshRenderer renderer;
     private JellyVertex[] jv;
     private Vector3[] vertexArray;
     // Start is called before the first frame update

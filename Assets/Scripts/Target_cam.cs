@@ -7,9 +7,12 @@ public class Target_cam : MonoBehaviour
 {
 
     [SerializeField] GameObject player;
+    [SerializeField] GameObject cam;
+
     [SerializeField] float distance_h_player;
     [SerializeField] float dis_jump;
 
+    [SerializeField] float eyes_roration;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +24,8 @@ public class Target_cam : MonoBehaviour
     void Update()
     {
         transform.position = player.transform.position+new Vector3(0, distance_h_player,0);
+        //transform.rotation = cam.transform.rotation;
+        
     }
 
     private void FixedUpdate()
