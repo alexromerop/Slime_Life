@@ -38,9 +38,25 @@
                     "interactions": ""
                 },
                 {
-                    "name": "InputAction1",
+                    "name": "InputActionN",
                     "type": "Button",
                     "id": "403819c2-8846-4774-99bd-f5bbba086dfa",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "InputActionW",
+                    "type": "Button",
+                    "id": "ee88306c-8e1f-427b-867b-99d50ceb6182",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "InputActionE",
+                    "type": "Button",
+                    "id": "a67d152f-1261-497a-8196-5bb40cdec8df",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -296,7 +312,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "InputAction1",
+                    "action": "InputActionN",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -307,7 +323,51 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "InputAction1",
+                    "action": "InputActionN",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "22f14a2f-57a3-42a8-9bb0-0110e552dad7",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "InputActionW",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "baf37bc9-13c4-4a96-93fc-4a176ad847fc",
+                    "path": "<XInputController>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "InputActionW",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "564df7de-87a8-425a-8f63-7e612c38b09b",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "InputActionE",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fadbbee5-0995-40b9-9e66-94d80cae3e02",
+                    "path": "<XInputController>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "InputActionE",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
