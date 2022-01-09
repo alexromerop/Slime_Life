@@ -29,8 +29,14 @@ public class Target_cam : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Vector3 cameraForward = cam.transform.forward;
+        cameraForward.y = 0;
+
         transform.position = player.transform.position+new Vector3(0, distance_h_player,0);
-        //transform.rotation = cam.transform.rotation;
+        
+        transform.rotation = Quaternion.LookRotation(cameraForward);
+
+
         CheckGroundStatus();
 
     }
