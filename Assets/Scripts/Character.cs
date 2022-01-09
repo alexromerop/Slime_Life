@@ -14,12 +14,14 @@ public class Character : MonoBehaviour
     public GameObject Bullet;
 
 
+
     private Material Orignal_mat;
     public Material Slime_mat;
-
+    Cinemachine.CinemachineImpulseSource source;
 
 
     [SerializeField] public int num_bullets = 0;
+    public float force;
 
 
 
@@ -149,7 +151,14 @@ public class Character : MonoBehaviour
         if (num_bullets > 0)
         {
             GameObject a = Instantiate(Bullet, transform.position, Quaternion.identity);
+          //  a.gameObject.GetComponent<Rigidbody>().centerOfMass = a.gameObject.transform.position;
 
+            Vector3 cameraForward = cam.transform.forward;
+            cameraForward.y = 0;
+
+
+            a.gameObject.GetComponent<Rigidbody>().AddForce(cameraForward * (10 * Random.Range(1.3f, 1.7f)), ForceMode.Impulse);
+            a.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(0,1,0) * 5, ForceMode.Impulse);
             //a.gameObject.GetComponent<Rigidbody>().AddForce
 
 
@@ -173,6 +182,8 @@ public class Character : MonoBehaviour
     }
 
 
+   
+
 
 
 
@@ -182,14 +193,18 @@ public class Character : MonoBehaviour
     {
         this.gameObject.GetComponent<SphereCollider>().enabled = false;
 
+        Drop.gameObject.layer = LayerMask.NameToLayer("Ignore_Player");
+
         Orignal_mat = Drop.gameObject.GetComponent<Renderer>().material;
         Drop.gameObject.GetComponent<Renderer>().material = Slime_mat;
 
-        yield return new WaitForSeconds(1);
-        this.gameObject.GetComponent<SphereCollider>().enabled = true;
-
-
         yield return new WaitForSeconds(2);
+        this.gameObject.GetComponent<SphereCollider>().enabled = true;
+        
+
+        yield return new WaitForSeconds(1);
+        Drop.gameObject.layer = LayerMask.NameToLayer("Default");
+
         Drop.gameObject.GetComponent<Renderer>().material = Orignal_mat;
 
 

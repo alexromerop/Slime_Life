@@ -9,6 +9,7 @@ public class Character_movment_scr : MonoBehaviour
     [SerializeField] private GameObject cam;
     [SerializeField] private GameObject prefab;
     [SerializeField] public int num_clone = 0;
+    public GameObject Cam_cinemachine;
 
 
 
@@ -116,7 +117,21 @@ public class Character_movment_scr : MonoBehaviour
 
     }
 
+    public void OnAiming()
+    {
 
+        Debug.Log("aaa");
+
+        if (Cam_cinemachine.activeInHierarchy == true)
+        {
+            Cam_cinemachine.SetActive(false);
+        }
+        else
+        {
+            Cam_cinemachine.SetActive(true);
+        }
+
+    }
 
 
     public void OnInputActionW()

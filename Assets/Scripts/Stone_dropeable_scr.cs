@@ -8,12 +8,9 @@ public class Stone_dropeable_scr : PickUp
 {
 
     [SerializeField] bool stong_interacting = false;
-  
+
     
-
-   
-
-   
+ 
 
 
 
@@ -47,7 +44,7 @@ public class Stone_dropeable_scr : PickUp
 
     public void delet()
     {
-
+        
     }
 
 
