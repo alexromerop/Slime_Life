@@ -148,7 +148,8 @@ MonoBehaviour:
   cam: {fileID: 7563737060413787974, guid: eb970831ec0b69044bfaa6a93a6cb788, type: 3}
   prefab: {fileID: 8569857979438418860}
   num_clone: 0
-  speed: 10
+  Cam_cinemachine: {fileID: 0}
+  speed: 20
   jumpForce: 300
   isGrounded: 0
 --- !u!114 &8569857979438418852
@@ -197,7 +198,9 @@ MonoBehaviour:
   PickUpUI: {fileID: 6417940450437702498, guid: 1a2d5f5f004b9a242ad0217e50ab0ff0, type: 3}
   Pick: {fileID: 0}
   Bullet: {fileID: 7079072343191123150, guid: 929a87331cc8ec547af99cb910e13c40, type: 3}
+  Slime_mat: {fileID: 0}
   num_bullets: 0
+  force: 0
 --- !u!114 &2430305037092394252
 MonoBehaviour:
   m_ObjectHideFlags: 0

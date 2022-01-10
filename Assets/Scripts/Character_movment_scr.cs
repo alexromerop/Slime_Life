@@ -10,6 +10,8 @@ public class Character_movment_scr : MonoBehaviour
     [SerializeField] private GameObject prefab;
     [SerializeField] public int num_clone = 0;
     public GameObject Cam_cinemachine;
+    public GameObject Cam_AIM_cinemachine;
+
 
 
 
@@ -117,6 +119,8 @@ public class Character_movment_scr : MonoBehaviour
 
     }
 
+    
+
     public void OnAiming()
     {
 
@@ -125,10 +129,14 @@ public class Character_movment_scr : MonoBehaviour
         if (Cam_cinemachine.activeInHierarchy == true)
         {
             Cam_cinemachine.SetActive(false);
+            Cam_AIM_cinemachine.SetActive(true);
+
         }
         else
         {
             Cam_cinemachine.SetActive(true);
+            Cam_AIM_cinemachine.SetActive(false);
+
         }
 
     }
@@ -155,7 +163,13 @@ public class Character_movment_scr : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
 
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            gameObject.GetComponent<Rigidbody>().AddForce((cam.transform.forward*3),ForceMode.Impulse);
 
+
+
+        }
 
 
     }
