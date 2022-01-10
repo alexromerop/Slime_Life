@@ -6,6 +6,8 @@ TagManager:
   tags:
   - OnGround
   - Pickable
+  - Colect
+  - Slime
   layers:
   - Default
   - TransparentFX

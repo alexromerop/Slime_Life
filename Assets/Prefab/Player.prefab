@@ -149,8 +149,9 @@ MonoBehaviour:
   prefab: {fileID: 8569857979438418860}
   num_clone: 0
   Cam_cinemachine: {fileID: 0}
-  speed: 20
-  jumpForce: 300
+  Cam_AIM_cinemachine: {fileID: 0}
+  speed: 400
+  jumpForce: 400
   isGrounded: 0
 --- !u!114 &8569857979438418852
 MonoBehaviour:
