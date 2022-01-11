@@ -105,8 +105,22 @@ public class Character : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+
+        if(other.CompareTag("Pickable"))
         Pick = other.gameObject;
 
+
+       
+
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Debug.Log("Kill");
+
+
+        }
     }
 
     public void get_ston()
@@ -184,7 +198,7 @@ public class Character : MonoBehaviour
 
    
 
-
+    
 
 
 

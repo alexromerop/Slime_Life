@@ -8,6 +8,7 @@ TagManager:
   - Pickable
   - Colect
   - Slime
+  - Enemy
   layers:
   - Default
   - TransparentFX

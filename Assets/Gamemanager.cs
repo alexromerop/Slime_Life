@@ -7,7 +7,7 @@ public class Gamemanager : MonoBehaviour
     public GameObject[] Jails;
     public GameObject[] Players;
     public GameObject[] Slimes;
-
+    [SerializeField] private int Slimes_free =0;
 
 
     // Start is called before the first frame update
@@ -24,5 +24,17 @@ public class Gamemanager : MonoBehaviour
     void Update()
     {
         
+    }
+
+
+
+    public void addpunt()
+    {
+        Slimes_free++;
+        if(Slimes_free== Slimes.Length)
+        {
+            Debug.Log("You win");
+        }
+
     }
 }

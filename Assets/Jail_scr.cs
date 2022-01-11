@@ -5,12 +5,15 @@ using UnityEngine;
 public class Jail_scr : MonoBehaviour
 {
     public GameObject manager;
-
+    public GameObject Child;
 
     // Start is called before the first frame update
     void Start()
     {
-        manager = GameObject.Find("Playermanager");
+        if (manager == null)
+        {
+            manager = GameObject.Find("Playermanager");
+        }
 
     }
 
@@ -27,7 +30,15 @@ public class Jail_scr : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Pickable"))
         {
+            gameObject.GetComponentInChildren<SphereCollider>().enabled = true;
+            Child.transform.SetParent(null);
+            Child.GetComponent<Slimes_scr>().In_Jail = false;
+           
+
+
             gameObject.SetActive(false);
+            //call particles and sound destruct
+            
 
         }
     }
