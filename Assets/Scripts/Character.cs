@@ -217,7 +217,7 @@ public class Character : MonoBehaviour
         
 
         yield return new WaitForSeconds(1);
-        Drop.gameObject.layer = LayerMask.NameToLayer("Default");
+        Drop.gameObject.layer = LayerMask.NameToLayer("All_les_enemys");
 
         Drop.gameObject.GetComponent<Renderer>().material = Orignal_mat;
 
