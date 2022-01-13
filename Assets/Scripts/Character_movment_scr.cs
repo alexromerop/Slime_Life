@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Character_movment_scr : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class Character_movment_scr : MonoBehaviour
     public GameObject Cam_cinemachine;
     public GameObject Cam_AIM_cinemachine;
 
+    public GameObject score;
 
 
 
@@ -33,6 +35,13 @@ public class Character_movment_scr : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+
+      
+            if (score == null)
+            {
+                score = GameObject.Find("Canvas");
+            }
+
     }
 
 
@@ -155,6 +164,17 @@ public class Character_movment_scr : MonoBehaviour
 
         this.gameObject.GetComponent<Character>().shoot(cam);
 
+        if (score.gameObject.GetComponent<Score>().Win.active)
+        {
+            SceneManager.LoadScene(0);
+            Cursor.lockState = CursorLockMode.None;
+        }
+
+        if (score.gameObject.GetComponent<Score>().Lose.active)
+        {
+            SceneManager.LoadScene(1);
+            Cursor.lockState = CursorLockMode.None;
+        }
 
 
     }

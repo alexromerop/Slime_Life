@@ -7,7 +7,7 @@ public class Gamemanager : MonoBehaviour
     public GameObject[] Jails;
     public GameObject[] Players;
     public GameObject[] Slimes;
-    [SerializeField] private int Slimes_free =0;
+    [SerializeField] public int Slimes_free =0;
 
 
     // Start is called before the first frame update

@@ -14,7 +14,6 @@ public class Character : MonoBehaviour
     public GameObject Bullet;
 
 
-
     private Material Orignal_mat;
     public Material Slime_mat;
     Cinemachine.CinemachineImpulseSource source;
@@ -117,7 +116,7 @@ public class Character : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("Kill");
+            GameObject.Find("Canvas").gameObject.GetComponent<Score>().Lose.SetActive(true);
 
 
         }

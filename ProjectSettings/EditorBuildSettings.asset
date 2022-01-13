@@ -4,6 +4,15 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 0
+    path: Assets/SlimUI/Modern Menu 1/Scenes/Menu_Scene.unity
+    guid: 829a86ba161cdd840842063447f41aab
+  - enabled: 1
+    path: Assets/EasyMainMenu/Scenes/MainMenu.unity
+    guid: c09f4b0b2a9226946aa44a3dd8ffdfa6
+  - enabled: 1
+    path: Assets/Scenes/Map1.unity
+    guid: ff8123e2b10a90746974fb34385ec7d6
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: b68fb6d1c9405984da83010c302b4490, type: 2}
