@@ -14,6 +14,11 @@ public class Character : MonoBehaviour
     public GameObject Bullet;
 
 
+
+
+    public AudioClip[] Error;
+
+
     private Material Orignal_mat;
     public Material Slime_mat;
     Cinemachine.CinemachineImpulseSource source;
@@ -183,11 +188,15 @@ public class Character : MonoBehaviour
             num_bullets--;
 
 
+            this.gameObject.GetComponent<Character_movment_scr>().playAuido(gameObject.GetComponent<Character_movment_scr>().Footsteps[1]);
+
         }
         else
         {
             num_bullets = 0;
-            //play sound error
+            this.gameObject.GetComponent<Character_movment_scr>().playAuido(gameObject.GetComponent<Character_movment_scr>().random(Error));
+
+
         }
 
 

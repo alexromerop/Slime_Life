@@ -13,7 +13,6 @@ public class Target_cam : MonoBehaviour
     [SerializeField] float distance_h_player;
     [SerializeField] float dis_jump;
 
-    [SerializeField] float eyes_roration;
 
     private float speed_jump;
 
@@ -67,7 +66,7 @@ public class Target_cam : MonoBehaviour
             else
             {
                 player.GetComponent<Character_movment_scr>().isGrounded = true;
-                footstepaudioPlayer();
+                
             }
 
         }
@@ -77,25 +76,6 @@ public class Target_cam : MonoBehaviour
 
 
 
-    public void footstepaudioPlayer()
-    {
-        if (!audioSource.isPlaying && (Mathf.Abs(player.GetComponent<Rigidbody>().velocity.z)>= 1 || Mathf.Abs(player.GetComponent<Rigidbody>().velocity.x) >=1) || player.GetComponent<Rigidbody>().velocity.y >=1)
-        {
-         //Segun la altura que caigas sonara mas fuerte
-            speed_jump = Mathf.Abs(player.GetComponent<Rigidbody>().velocity.y);
-            audioSource.volume = (speed_jump / 10);
-
-
-            //si la altura es muy poca se pone el volumen a 0
-        if (audioSource.volume < 0.05f)
-        {
-            audioSource.volume = 0.0f;
-        }
-
-
-        audioSource.Play();
-       
-        }
-    }
+   
 
 }

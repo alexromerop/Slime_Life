@@ -15,9 +15,12 @@ public class Character_movment_scr : MonoBehaviour
 
     public GameObject score;
 
+    public AudioClip[] Footsteps;
 
+    public AudioSource audioSource;
 
     private Rigidbody rb;
+    [SerializeField] float speed_jump;
 
 
     private float movementX;
@@ -41,6 +44,8 @@ public class Character_movment_scr : MonoBehaviour
             {
                 score = GameObject.Find("Canvas");
             }
+
+        audioSource =gameObject.GetComponent<AudioSource>();
 
     }
 
@@ -111,21 +116,6 @@ public class Character_movment_scr : MonoBehaviour
 
 
 
-
-
-
-
-        // GameObject Clone2 = Instantiate(prefab, transform.position, Quaternion.identity);
-        //Clone2.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-
-
-        // Clone2.GetComponent<Character_movment_scr>().enabled = false;
-        //Clone2.GetComponent<Character>().enabled = false;
-
-
-        //Instantiate(prefab, transform.position, Quaternion.identity).gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-
-
     }
 
     
@@ -164,6 +154,9 @@ public class Character_movment_scr : MonoBehaviour
 
         this.gameObject.GetComponent<Character>().shoot(cam);
 
+
+
+
         if (score.gameObject.GetComponent<Score>().Win.active)
         {
             SceneManager.LoadScene(0);
@@ -191,6 +184,77 @@ public class Character_movment_scr : MonoBehaviour
 
         }
 
+        if (collision.gameObject.CompareTag("OnGround"))
+        {
+            footstepaudioPlayer();
+
+
+
+        }
+
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public void footstepaudioPlayer()
+    {
+        if (!audioSource.isPlaying && (Mathf.Abs(gameObject.GetComponent<Rigidbody>().velocity.z) >= 1 || Mathf.Abs(gameObject.GetComponent<Rigidbody>().velocity.x) >= 1) || gameObject.GetComponent<Rigidbody>().velocity.y >= 1)
+        {
+            //Segun la altura que caigas sonara mas fuerte
+            speed_jump = Mathf.Abs(gameObject.GetComponent<Rigidbody>().velocity.y);
+            audioSource.volume = (speed_jump / 10);
+
+            //si la altura es muy poca se pone el volumen a 0
+            if (audioSource.volume < 0.05f)
+            {
+                audioSource.volume = 0.0f;
+            }
+
+            
+
+            audioSource.Play();
+
+        }
+    }
+
+
+
+    public AudioClip random(AudioClip[] audio)
+    {
+        AudioClip audioClip = Footsteps[Random.Range(0, audio.Length)];
+
+        audioSource.clip = audioClip;
+
+
+        return audioClip;
+
+    }
+
+
+
+    public void playAuido(AudioClip audioClip)
+    {
+        AudioClip pivot;
+        pivot = audioSource.clip;
+        audioSource.clip = audioClip;
+
+
+        audioSource.Play();
+
+
+
+    }
+
 }
