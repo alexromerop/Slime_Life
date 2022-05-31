@@ -37,4 +37,9 @@ public class Gamemanager : MonoBehaviour
         }
 
     }
+
+    public void RechargePlayer()
+    {
+        Players = GameObject.FindGameObjectsWithTag("Player");
+    }
 }

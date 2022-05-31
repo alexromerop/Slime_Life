@@ -6,7 +6,7 @@ using UnityEngine;
 public class Target_cam : MonoBehaviour
 {
 
-    [SerializeField] GameObject player;
+    public GameObject player;
     [SerializeField] GameObject cam;
     
 

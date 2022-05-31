@@ -13,8 +13,7 @@ public class Character : MonoBehaviour
     public GameObject Pick;
     public GameObject Bullet;
 
-
-
+    public GameObject slimeNear;
 
     public AudioClip[] Error;
 
@@ -27,7 +26,10 @@ public class Character : MonoBehaviour
     [SerializeField] public int num_bullets = 0;
     public float force;
 
-
+    private void Awake()
+    {
+        PickUpUI = GameObject.Find("PickUpUi");
+    }
 
     private void OnDrawGizmos()
     {
@@ -77,8 +79,6 @@ public class Character : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        
-
         PickUp PickUpComponent;
         if (other.gameObject.TryGetComponent<PickUp>(out PickUpComponent))
         {
@@ -90,6 +90,11 @@ public class Character : MonoBehaviour
             {
                 GetClosestPickUpItem(PickUpComponent);
             }
+        }
+
+        if (other.CompareTag("Player") && other != gameObject)
+        {
+            slimeNear = other.gameObject;
         }
     }
 
@@ -104,17 +109,13 @@ public class Character : MonoBehaviour
             PickUpUI.SetActive(false);
         }
         Pick = null;
-
+        slimeNear=null;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-
         if(other.CompareTag("Pickable"))
         Pick = other.gameObject;
-
-
-       
 
     }
     private void OnCollisionEnter(Collision collision)
@@ -229,6 +230,13 @@ public class Character : MonoBehaviour
 
         Drop.gameObject.GetComponent<Renderer>().material = Orignal_mat;
 
+
+    }
+    public void Polifusion(GameObject other )
+    {
+        gameObject.transform.localScale += other.transform.localScale;
+        Destroy(other);
+        Player_Manager.instance.GetPlayers();
 
     }
 }

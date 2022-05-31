@@ -48,16 +48,17 @@ public class Score : MonoBehaviour
             
 
         }
-
-        if(manager.GetComponent<Gamemanager>().Players[0].activeSelf==false)
+        /*
+        if(manager.GetComponent<Gamemanager>().Players[0].activeSelf==false&& manager!=null)
         {
+            manager.GetComponent<Gamemanager>().RechargePlayer();
             manager.GetComponent<Gamemanager>().Players[0].isStatic = true;
             Debug.Log(Lose);
             Lose.SetActive(true);
             wait = true;
 
         }
-
+        */
     }
 
 

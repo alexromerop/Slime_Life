@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using Cinemachine;
+
 
 public class Character_movment_scr : MonoBehaviour
 {
+    [SerializeField] private GameObject tarjet;
 
     [SerializeField] private GameObject cam;
     [SerializeField] private GameObject prefab;
@@ -22,7 +25,6 @@ public class Character_movment_scr : MonoBehaviour
     private Rigidbody rb;
     [SerializeField] float speed_jump;
 
-
     private float movementX;
     private float movementY;
 
@@ -31,53 +33,40 @@ public class Character_movment_scr : MonoBehaviour
 
     public bool isGrounded;
 
+    private void Awake()
+    {
+        cam = GameObject.Find("Main Camera");
+        Cam_cinemachine = FindObjectOfType<CinemachineFreeLook>().gameObject;
+        audioSource = gameObject.GetComponent<AudioSource>();
+        rb = GetComponent<Rigidbody>();
+        tarjet = FindObjectOfType<Target_cam>().gameObject;
 
-
-
+    }
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
-
-      
             if (score == null)
             {
                 score = GameObject.Find("Canvas");
             }
-
-        audioSource =gameObject.GetComponent<AudioSource>();
-
     }
-
 
     void Update()
     {
         Vector3 cameraForward = cam.transform.forward;
         cameraForward.y = 0;
-
     }
-
-
-
 
     private void FixedUpdate()
     {
-        // rb.AddForce(new Vector3(movementX * speed, 0.0f, movementY * speed));
-
         //movimiento laterla con la camera
         rb.AddTorque(new Vector3(cam.transform.forward.x * movementX * -speed, 0, cam.transform.forward.z * movementX * -speed));
         rb.AddTorque(new Vector3(cam.transform.forward.z * movementY * speed, 0, -cam.transform.forward.x * movementY * speed));
 
-
-
     }
 
-
-
-
-
     //Inputs
-    void OnJump(InputValue movementValue)
+    public void OnJump(InputValue movementValue)
     {
         if (isGrounded)
         {
@@ -85,26 +74,92 @@ public class Character_movment_scr : MonoBehaviour
             isGrounded = false;
         }
     }
-    void OnMove(InputValue movementValue)
+    public void OnMove(InputValue movementValue)
     {
         Vector2 movementVector = movementValue.Get<Vector2>();
         movementX = movementVector.x;
         movementY = movementVector.y;
     }
-
-    void OnInputActionN(InputValue movementValue)
+    public void OnChangePlayer(InputValue movementValue)
     {
-        Debug.Log("a");
+        int value= (int) movementValue.Get<float>();
+        Player_Manager.instance.ChangePlayer(gameObject.GetComponent<Character>(), value );
+        
+    }
+    public void OnInputActionN(InputValue movementValue)
+    {
+        
+        if (gameObject.GetComponent<Character>().slimeNear != null)
+            this.gameObject.GetComponent<Character>().Polifusion(gameObject.GetComponent<Character>().slimeNear);
+    }
+    public void OnInputActionHoldN(InputValue movementValue)
+    {
+        Dividirse();
+    }
+    public void OnAiming(InputValue movementValue)
+    {
+        if (Cam_cinemachine.activeInHierarchy == true)
+        {
+            Cam_cinemachine.SetActive(false);
+            Cam_AIM_cinemachine.SetActive(true);
+        }
+        else
+        {
+            Cam_cinemachine.SetActive(true);
+            Cam_AIM_cinemachine.SetActive(false);
+        }
 
+    }
+
+    public void OnInputActionW(InputValue movementValue)
+    {
+        this.gameObject.GetComponent<Character>().get_ston();
+    }
+    public void OnShoot(InputValue movementValue)
+    {
+
+        this.gameObject.GetComponent<Character>().shoot(cam);
+        if (score.gameObject.GetComponent<Score>().Win.activeSelf)
+        {
+            SceneManager.LoadScene(0);
+            Cursor.lockState = CursorLockMode.None;
+        }
+        if (score.gameObject.GetComponent<Score>().Lose.activeSelf)
+        {
+            SceneManager.LoadScene(1);
+            Cursor.lockState = CursorLockMode.None;
+        }
+    }
+    //Collisiond
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            gameObject.GetComponent<Rigidbody>().AddForce((cam.transform.forward*3),ForceMode.Impulse);
+        }
+
+        if (collision.gameObject.CompareTag("OnGround"))
+        {
+            footstepaudioPlayer();
+        }
+
+
+    }
+
+  
+
+
+    public void Dividirse()
+    {
         if (gameObject.transform.localScale.x >= 0.6f)
         {
-
-
             GameObject Clone1 = Instantiate(prefab, transform.position, Quaternion.identity);
             Clone1.transform.localScale = gameObject.transform.localScale / 2;
-
-            //gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+            Clone1.GetComponent<Character_movment_scr>().enabled = false;
+            Clone1.GetComponent<Character>().enabled = false;
+            Clone1.GetComponent<PlayerInput>().enabled = false;
             gameObject.transform.localScale = gameObject.transform.localScale / 2;
+            Player_Manager.instance.GetPlayers();
 
         }
         else
@@ -113,103 +168,10 @@ public class Character_movment_scr : MonoBehaviour
 
             //error sound
         }
-
-
-
     }
-
-    
-
-    public void OnAiming()
-    {
-
-        Debug.Log("aaa");
-
-        if (Cam_cinemachine.activeInHierarchy == true)
-        {
-            Cam_cinemachine.SetActive(false);
-            Cam_AIM_cinemachine.SetActive(true);
-
-        }
-        else
-        {
-            Cam_cinemachine.SetActive(true);
-            Cam_AIM_cinemachine.SetActive(false);
-
-        }
-
-    }
-
-
-    public void OnInputActionW()
-    {
-        Debug.Log("W");
-        this.gameObject.GetComponent<Character>().get_ston();
-
-
-
-    }
-    public void OnInputActionE()
-    {
-
-        this.gameObject.GetComponent<Character>().shoot(cam);
-
-
-
-
-        if (score.gameObject.GetComponent<Score>().Win.active)
-        {
-            SceneManager.LoadScene(0);
-            Cursor.lockState = CursorLockMode.None;
-        }
-
-        if (score.gameObject.GetComponent<Score>().Lose.active)
-        {
-            SceneManager.LoadScene(1);
-            Cursor.lockState = CursorLockMode.None;
-        }
-
-
-    }
-
-    //Collisiond
-    private void OnCollisionEnter(Collision collision)
-    {
-
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            gameObject.GetComponent<Rigidbody>().AddForce((cam.transform.forward*3),ForceMode.Impulse);
-
-
-
-        }
-
-        if (collision.gameObject.CompareTag("OnGround"))
-        {
-            footstepaudioPlayer();
-
-
-
-        }
-
-
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public void footstepaudioPlayer()
     {
+        if (audioSource != null)
         if (!audioSource.isPlaying && (Mathf.Abs(gameObject.GetComponent<Rigidbody>().velocity.z) >= 1 || Mathf.Abs(gameObject.GetComponent<Rigidbody>().velocity.x) >= 1) || gameObject.GetComponent<Rigidbody>().velocity.y >= 1)
         {
             //Segun la altura que caigas sonara mas fuerte
@@ -228,11 +190,9 @@ public class Character_movment_scr : MonoBehaviour
 
         }
     }
-
-
-
     public AudioClip random(AudioClip[] audio)
     {
+        
         AudioClip audioClip = Footsteps[Random.Range(0, audio.Length)];
 
         audioSource.clip = audioClip;
@@ -241,9 +201,6 @@ public class Character_movment_scr : MonoBehaviour
         return audioClip;
 
     }
-
-
-
     public void playAuido(AudioClip audioClip)
     {
         AudioClip pivot;
@@ -257,4 +214,11 @@ public class Character_movment_scr : MonoBehaviour
 
     }
 
+    public void ChangeCamera()
+    {
+        Cam_cinemachine.GetComponent<CinemachineFreeLook>().LookAt = gameObject.transform;
+        tarjet.GetComponent<Target_cam>().player = gameObject;
+
+
+    }
 }
