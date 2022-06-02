@@ -24,15 +24,6 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Fire",
-                    "type": "Button",
-                    "id": "9d1b5f7e-0920-4ca7-9faa-a5efde6ff1c8",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Jump",
                     "type": "Button",
                     "id": "a237a0c6-a130-47bc-8f12-bb55a3dea744",
@@ -42,7 +33,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "InputActionN",
+                    "name": "Unirse",
                     "type": "Button",
                     "id": "403819c2-8846-4774-99bd-f5bbba086dfa",
                     "expectedControlType": "Button",
@@ -51,18 +42,27 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "InputActionHoldN",
+                    "name": "Dividirse",
                     "type": "Button",
                     "id": "5361a7c8-4b6a-4eed-ac30-ee5e1eadf9e7",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Hold",
+                    "interactions": "",
                     "initialStateCheck": false
                 },
                 {
                     "name": "InputActionW",
                     "type": "Button",
                     "id": "ee88306c-8e1f-427b-867b-99d50ceb6182",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "InputActionN",
+                    "type": "Button",
+                    "id": "25b5f485-424e-4b1b-8638-e7cf5cbcb99e",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -78,27 +78,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Aiming",
-                    "type": "Button",
-                    "id": "4bd18310-acf2-480e-9718-9ca3ca30f710",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "ChangePlayer",
                     "type": "Button",
                     "id": "29a71f14-1365-48df-af76-e2e6263d3b60",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Shoot",
-                    "type": "Button",
-                    "id": "a10b392e-2cf2-4ee7-9209-c09d4109e9bd",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -240,50 +222,6 @@
                 },
                 {
                     "name": "",
-                    "id": "05f6913d-c316-48b2-a6bb-e225f14c7960",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "Fire",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "886e731e-7071-4ae4-95c0-e61739dad6fd",
-                    "path": "<Touchscreen>/primaryTouch/tap",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Touch",
-                    "action": "Fire",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "ee3d0cd2-254e-47a7-a8cb-bc94d9658c54",
-                    "path": "<Joystick>/trigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Joystick",
-                    "action": "Fire",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "8255d333-5683-4943-a58a-ccb207ff1dce",
-                    "path": "<XRController>/{PrimaryAction}",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "XR",
-                    "action": "Fire",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "468ef758-125a-4e42-be6f-be48ae28cb8a",
                     "path": "<Keyboard>/space",
                     "interactions": "",
@@ -296,7 +234,7 @@
                 {
                     "name": "",
                     "id": "672e88e6-a4d4-480f-abeb-4b51993ce6dd",
-                    "path": "<XInputController>/buttonSouth",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
@@ -311,18 +249,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "InputActionN",
+                    "action": "Unirse",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "059b089c-ab7d-41d1-bb2c-b81bbdbed125",
-                    "path": "<XInputController>/buttonNorth",
+                    "path": "<Gamepad>/leftShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "InputActionN",
+                    "action": "Unirse",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -340,7 +278,7 @@
                 {
                     "name": "",
                     "id": "baf37bc9-13c4-4a96-93fc-4a176ad847fc",
-                    "path": "<XInputController>/buttonWest",
+                    "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
@@ -351,7 +289,7 @@
                 {
                     "name": "",
                     "id": "564df7de-87a8-425a-8f63-7e612c38b09b",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Keyboard>/shift",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -362,33 +300,11 @@
                 {
                     "name": "",
                     "id": "143bb1cd-cc10-4eca-a2f0-a3664166fe91",
-                    "path": "<Gamepad>/rightTrigger",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
                     "action": "InputActionE",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "0af4ebd5-dd47-453b-b127-4617cb895ab1",
-                    "path": "<Mouse>/rightButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "Aiming",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "0cd2901f-82a7-4ee1-b78c-b44328839ad7",
-                    "path": "<Gamepad>/rightTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Aiming",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -406,7 +322,7 @@
                 {
                     "name": "negative",
                     "id": "77f7786b-1409-484c-a364-9b9f4aeb2e31",
-                    "path": "<Gamepad>/rightShoulder",
+                    "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
@@ -417,7 +333,7 @@
                 {
                     "name": "positive",
                     "id": "37785c98-71e7-4756-8d43-cad302132f91",
-                    "path": "<Gamepad>/leftShoulder",
+                    "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
@@ -427,45 +343,45 @@
                 },
                 {
                     "name": "",
-                    "id": "6731ff13-1f64-4e46-ace0-91a2988b2fce",
-                    "path": "<Keyboard>/shift",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Shoot",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "c544a9db-7748-4fce-935e-f502075a3b66",
-                    "path": "<Gamepad>/leftTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Shoot",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "b23bde08-f8e2-4398-b521-13bf9db50895",
-                    "path": "<Keyboard>/e",
+                    "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "InputActionHoldN",
+                    "action": "Dividirse",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "bccce46c-c5aa-447e-9821-76feb585de57",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Dividirse",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9966f6e6-6d1a-49a8-b0aa-e7fcc055f2f4",
+                    "path": "<Keyboard>/v",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "InputActionN",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "82db22f9-0fc6-474c-973a-2cf55dffc6cd",
                     "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "InputActionHoldN",
+                    "action": "InputActionN",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

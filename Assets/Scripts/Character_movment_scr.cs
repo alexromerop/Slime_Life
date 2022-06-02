@@ -66,6 +66,7 @@ public class Character_movment_scr : MonoBehaviour
     }
 
     //Inputs
+    #region Inputs
     public void OnJump(InputValue movementValue)
     {
         if (isGrounded)
@@ -86,51 +87,30 @@ public class Character_movment_scr : MonoBehaviour
         Player_Manager.instance.ChangePlayer(gameObject.GetComponent<Character>(), value );
         
     }
-    public void OnInputActionN(InputValue movementValue)
+    public void OnUnirse(InputValue movementValue)
     {
         
         if (gameObject.GetComponent<Character>().slimeNear != null)
             this.gameObject.GetComponent<Character>().Polifusion(gameObject.GetComponent<Character>().slimeNear);
     }
-    public void OnInputActionHoldN(InputValue movementValue)
+    public void OnDividirse(InputValue movementValue)
     {
         Dividirse();
     }
-    public void OnAiming(InputValue movementValue)
-    {
-        if (Cam_cinemachine.activeInHierarchy == true)
-        {
-            Cam_cinemachine.SetActive(false);
-            Cam_AIM_cinemachine.SetActive(true);
-        }
-        else
-        {
-            Cam_cinemachine.SetActive(true);
-            Cam_AIM_cinemachine.SetActive(false);
-        }
-
-    }
-
     public void OnInputActionW(InputValue movementValue)
     {
-        this.gameObject.GetComponent<Character>().get_ston();
     }
-    public void OnShoot(InputValue movementValue)
+    public void OnInputActionE(InputValue movementValue)
+    {
+        //this.gameObject.GetComponent<Character>().get_ston();
+        this.gameObject.GetComponent<Character>().get_water();
+    }
+    public void OnInputActionN(InputValue movementValue)
     {
 
-        this.gameObject.GetComponent<Character>().shoot(cam);
-        if (score.gameObject.GetComponent<Score>().Win.activeSelf)
-        {
-            SceneManager.LoadScene(0);
-            Cursor.lockState = CursorLockMode.None;
-        }
-        if (score.gameObject.GetComponent<Score>().Lose.activeSelf)
-        {
-            SceneManager.LoadScene(1);
-            Cursor.lockState = CursorLockMode.None;
-        }
     }
-    //Collisiond
+    #endregion
+    #region collisons
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -145,12 +125,13 @@ public class Character_movment_scr : MonoBehaviour
 
 
     }
+    #endregion
 
-  
 
 
     public void Dividirse()
     {
+        //Segun la escal partes la escala en 2 i instancias otroa player de ese tamaño
         if (gameObject.transform.localScale.x >= 0.6f)
         {
             GameObject Clone1 = Instantiate(prefab, transform.position, Quaternion.identity);
@@ -171,6 +152,7 @@ public class Character_movment_scr : MonoBehaviour
     }
     public void footstepaudioPlayer()
     {
+        //sonido hehcos por raycast
         if (audioSource != null)
         if (!audioSource.isPlaying && (Mathf.Abs(gameObject.GetComponent<Rigidbody>().velocity.z) >= 1 || Mathf.Abs(gameObject.GetComponent<Rigidbody>().velocity.x) >= 1) || gameObject.GetComponent<Rigidbody>().velocity.y >= 1)
         {
@@ -192,7 +174,7 @@ public class Character_movment_scr : MonoBehaviour
     }
     public AudioClip random(AudioClip[] audio)
     {
-        
+        //retorna un audios random en el array usado para diferentes pasos
         AudioClip audioClip = Footsteps[Random.Range(0, audio.Length)];
 
         audioSource.clip = audioClip;

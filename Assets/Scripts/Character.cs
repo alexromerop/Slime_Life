@@ -16,6 +16,8 @@ public class Character : MonoBehaviour
     public GameObject slimeNear;
 
     public AudioClip[] Error;
+    public bool onWater = false;
+    public bool onWaterTimer = true;
 
 
     private Material Orignal_mat;
@@ -26,30 +28,29 @@ public class Character : MonoBehaviour
     [SerializeField] public int num_bullets = 0;
     public float force;
 
-    private void Awake()
+
+    private void Start()
     {
         PickUpUI = GameObject.Find("PickUpUi");
+        onWaterTimer = true;
+
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.black;
-        
-    }
     // Update is called once per frame
     void Update()
     {
 
-        if (PickUpItem!= null)
-        {
-
-            PickUpUI.transform.position = PickUpItem.transform.position + Vector3.up;
-            PickUpUI.transform.rotation = Quaternion.LookRotation((PickUpItem.transform.position - transform.position).normalized);
-        }
+        //if (PickUpItem!= null)
+        //{
+        //    //inventario sin uso
+        //    PickUpUI.transform.position = PickUpItem.transform.position + Vector3.up;
+        //    PickUpUI.transform.rotation = Quaternion.LookRotation((PickUpItem.transform.position - transform.position).normalized);
+        //}
     }
 
     private void SetInteractFocus(PickUp NewInteract)
     {
+        //alterna el focus dsegun el ovjeto mas cercano
         if (PickUpItem != null)
         {
             PickUpItem.bBeingTargeted = false;
@@ -79,6 +80,7 @@ public class Character : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        //Coger objeto sin uso
         PickUp PickUpComponent;
         if (other.gameObject.TryGetComponent<PickUp>(out PickUpComponent))
         {
@@ -92,15 +94,22 @@ public class Character : MonoBehaviour
             }
         }
 
+        //para saber con que slime unirte
         if (other.CompareTag("Player") && other != gameObject)
         {
             slimeNear = other.gameObject;
+        }
+        if (other.CompareTag("water"))
+        {
+            onWater = true;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
+        //para el cogerobjetos
         PickUp PickUpComponent = other.gameObject.GetComponent<PickUp>();
+        if (PickUpComponent != null)
         if (PickUpComponent && PickUpComponent == PickUpItem)
         {
             
@@ -109,7 +118,14 @@ public class Character : MonoBehaviour
             PickUpUI.SetActive(false);
         }
         Pick = null;
+
+        //no slimes cerca
         slimeNear=null;
+
+        if (other.CompareTag("water"))
+        {
+            onWater = true;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -120,48 +136,43 @@ public class Character : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            GameObject.Find("Canvas").gameObject.GetComponent<Score>().Lose.SetActive(true);
-
-
-        }
-    }
-
-    public void get_ston()
-    {
-        
-        if (Pick != null)
-        if(Pick.tag == "Pickable")
-        {
-            PickUp PickUpComponent = Pick.gameObject.GetComponent<PickUp>();
-            if (PickUpComponent && PickUpComponent == PickUpItem)
+        //sistema de perdido simple
+        if (collision.gameObject.CompareTag("Enemy")){
+            if (transform.localScale.x <= 1.8)
             {
-                num_bullets++;
-
-                PickUpUI.SetActive(false);
-                Destroy(Pick);
-
-                //seria mejor transportarlas dentro del player sin colision i hacerlas hijop para qeu se viera que estan dentro i ver el numero de municion
-                
-                Pick = null;
-
-
-
+                GameObject.Find("Canvas").gameObject.GetComponent<Score>().Lose.SetActive(true);
 
             }
-
+            else
+            {
+                Destroy(collision.gameObject);
+                transform.transform.localScale += new Vector3(0.5f, 0.5f, 0.5f);
+            } 
         }
-        else
+
+    }
+
+
+
+    public void get_water()
+    {
+        Debug.Log(onWaterTimer);
+        //Crecer al dar input en el agua
+        if (onWater && onWaterTimer)
         {
-        Debug.Log("w2");
+            Debug.Log("water2");
 
+            onWaterTimer = false;
+            StartCoroutine(TimeToWater());
+            transform.localScale += new Vector3(0.3f,0.3f,0.3f);
         }
+       
 
 
 
 
     }
+
 
 
     public void shoot(GameObject cam)
@@ -214,6 +225,7 @@ public class Character : MonoBehaviour
 
     IEnumerator Change_Material(GameObject Drop)
     {
+        //para los disparos ahora sin uso
         this.gameObject.GetComponent<SphereCollider>().enabled = false;
 
         Drop.gameObject.layer = LayerMask.NameToLayer("Ignore_Player");
@@ -234,9 +246,18 @@ public class Character : MonoBehaviour
     }
     public void Polifusion(GameObject other )
     {
+        //Juntar 2 slimes de cuaklquier tamaño
         gameObject.transform.localScale += other.transform.localScale;
         Destroy(other);
         Player_Manager.instance.GetPlayers();
+
+    }
+
+
+    IEnumerator TimeToWater()
+    {
+        yield return new WaitForSeconds(30);
+        onWaterTimer = true;
 
     }
 }

@@ -28,7 +28,7 @@ public class JellyMesh : MonoBehaviour
 
     }
 
-    // Update is called once per frame
+   
     void FixedUpdate()
     {
         vertexArray = OriginalMesh.vertices;

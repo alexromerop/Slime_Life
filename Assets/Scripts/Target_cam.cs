@@ -31,6 +31,7 @@ public class Target_cam : MonoBehaviour
 
         if (player != null)
         {
+            //seguir al jugador
             Vector3 cameraForward = cam.transform.forward;
             cameraForward.y = 0;
 
@@ -51,6 +52,7 @@ public class Target_cam : MonoBehaviour
 
     void CheckGroundStatus()
     {
+        //lo dice el nombre mirar si tocas suelo o no para el salto
         dis_jump = distance_h_player + 1f;
         RaycastHit hit;
         Ray landingRay = new Ray(transform.position, Vector3.down);

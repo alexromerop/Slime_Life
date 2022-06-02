@@ -23,6 +23,7 @@ public class Enemy_scr : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (target != null)
         myNavMeshAgent.SetDestination(target.transform.position);
         Chek_target();
 

@@ -39,6 +39,8 @@ public class Player_Manager : MonoBehaviour
 
     public void ChangePlayer(Character player, int value)
     {
+        //pivota de personaje al que cambiaras, pasando al final de l array si no es el 0 i al reves
+        Player_Manager.instance.GetPlayers();
         if (character != null)
         {
             for (int i = 0; i < character.Length; i++)
@@ -65,19 +67,20 @@ public class Player_Manager : MonoBehaviour
 
     public void ActivePlayer(Character ca, bool value)
     {
-        ca.gameObject.GetComponent<Character_movment_scr>().enabled = value;
-        ca.gameObject.GetComponent<PlayerInput>().enabled = value;
-        ca.enabled = value;
-        if (value)
+        //aqui segun el pivote se combia el personaje
+        if (character != null)
         {
-        ca.gameObject.GetComponent<Character_movment_scr>().ChangeCamera();
+            ca.gameObject.GetComponent<Character_movment_scr>().enabled = value;
+            ca.gameObject.GetComponent<PlayerInput>().enabled = value;
+            ca.enabled = value;
+            if (value)
+            {
+                ca.gameObject.GetComponent<Character_movment_scr>().ChangeCamera();
 
+            }
         }
 
     }
 
-    private void FocsuCamera()
-    {
-        
-    }
+   
 }

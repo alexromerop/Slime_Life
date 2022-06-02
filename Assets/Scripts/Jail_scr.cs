@@ -28,7 +28,7 @@ public class Jail_scr : MonoBehaviour
     {
 
 
-        if (collision.gameObject.CompareTag("Pickable"))
+        if (collision.gameObject.CompareTag("Player"))
         {
             gameObject.GetComponentInChildren<SphereCollider>().enabled = true;
             Child.transform.SetParent(null);

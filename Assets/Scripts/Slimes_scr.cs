@@ -36,6 +36,7 @@ public class Slimes_scr : MonoBehaviour
             }
             else if(check==false)
             {
+                other.gameObject.transform.localScale += transform.localScale;
                 check = true;
                 StartCoroutine(Timer());
                 manager.GetComponent<Gamemanager>().addpunt();
@@ -48,7 +49,7 @@ public class Slimes_scr : MonoBehaviour
 
     IEnumerator Timer()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.1f);
         check = false;
         gameObject.SetActive(false);
 

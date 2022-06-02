@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 public class Stone_dropeable_scr : PickUp
 {
-
+    //diasparo que esa en desuso
     [SerializeField] bool stong_interacting = false;
     public bool Shoting;
     
