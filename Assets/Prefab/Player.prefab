@@ -34,7 +34,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8569857979438418860}
-  m_LocalRotation: {x: -0, y: 0.00000025810598, z: -5.241918e-13, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.19, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -58,7 +58,7 @@ MeshRenderer:
   m_GameObject: {fileID: 8569857979438418860}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -98,13 +98,13 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8569857979438418860}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 5
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 1
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 32
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!64 &8569857979438418859
 MeshCollider:
@@ -132,7 +132,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 3.2034707
-  m_Center: {x: 1.848646e-15, y: 7.451999e-27, z: -0.15765142}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8569857979438418857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,13 +145,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfec8559389cd974d8b4d82628402619, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 7563737060413787974, guid: eb970831ec0b69044bfaa6a93a6cb788, type: 3}
+  tarjet: {fileID: 0}
+  cam: {fileID: 0}
   prefab: {fileID: 8569857979438418860}
   num_clone: 0
   Cam_cinemachine: {fileID: 0}
   Cam_AIM_cinemachine: {fileID: 0}
-  speed: 400
-  jumpForce: 400
+  score: {fileID: 0}
+  Footsteps:
+  - {fileID: 8300000, guid: 0ec15d496b4b1aa46a6f2b191ef1a317, type: 3}
+  - {fileID: 8300000, guid: 8c24206df9625254a835f2640c56261f, type: 3}
+  audioSource: {fileID: -1210336548235748232}
+  speed_jump: 0
+  speed: 80
+  jumpForce: 1200
   isGrounded: 0
 --- !u!114 &8569857979438418852
 MonoBehaviour:
@@ -177,7 +184,99 @@ MonoBehaviour:
   m_ControlsChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_ActionEvents: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8569857979438418857}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 8ee44ad1-7f96-45d1-b9e4-d54d99c7357a
+    m_ActionName: Player/Move[/XInputControllerWindows/leftStick,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c1b48240-8b8b-4f19-88df-2f3a3b4815f4
+    m_ActionName: Player/Look[/XInputControllerWindows/rightStick,/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9d1b5f7e-0920-4ca7-9faa-a5efde6ff1c8
+    m_ActionName: Player/Fire[/XInputControllerWindows/rightTrigger,/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a237a0c6-a130-47bc-8f12-bb55a3dea744
+    m_ActionName: Player/Jump[/Keyboard/space,/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 403819c2-8846-4774-99bd-f5bbba086dfa
+    m_ActionName: Player/InputAction1[/Keyboard/e,/XInputControllerWindows/buttonNorth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4d906d8d-31a4-4c20-81b5-e375a5f16823
+    m_ActionName: UI/Navigate[/XInputControllerWindows/leftStick/up,/XInputControllerWindows/rightStick/up,/XInputControllerWindows/leftStick/down,/XInputControllerWindows/rightStick/down,/XInputControllerWindows/leftStick/left,/XInputControllerWindows/rightStick/left,/XInputControllerWindows/leftStick/right,/XInputControllerWindows/rightStick/right,/XInputControllerWindows/dpad,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3790b11d-32f3-415c-9724-6786891426ce
+    m_ActionName: UI/Submit[/Keyboard/enter,/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: cc825eb9-98e5-4bbc-9a54-d60c97d77519
+    m_ActionName: UI/Cancel[/Keyboard/escape,/XInputControllerWindows/buttonEast]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3b3221c1-91f4-4112-9486-2579ac0a452b
+    m_ActionName: UI/Point[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f31fa021-e704-4e79-aa93-8655d2d016be
+    m_ActionName: UI/Click[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fd292d3b-15de-42fa-9e2b-53401e4e8956
+    m_ActionName: UI/ScrollWheel[/Mouse/scroll]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8f6648ad-7b40-4d3d-953b-8ba692a6fec9
+    m_ActionName: UI/MiddleClick[/Mouse/middleButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 96032916-b890-4c6e-ae45-96360eb1dc3d
+    m_ActionName: UI/RightClick[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e535263c-e02e-41f9-8673-f48bf78497f9
+    m_ActionName: UI/TrackedDevicePosition
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d9367426-cdfa-4eb9-bc7d-6c39a0b4caf1
+    m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ee88306c-8e1f-427b-867b-99d50ceb6182
+    m_ActionName: Player/InputActionW[/Keyboard/q,/XInputControllerWindows/buttonWest]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a67d152f-1261-497a-8196-5bb40cdec8df
+    m_ActionName: Player/InputActionE[/Mouse/leftButton,/XInputControllerWindows/rightTrigger]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4bd18310-acf2-480e-9718-9ca3ca30f710
+    m_ActionName: Player/Aiming[/Mouse/rightButton,/XInputControllerWindows/rightTrigger]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 29a71f14-1365-48df-af76-e2e6263d3b60
+    m_ActionName: Player/ChangePlayerRight[/XInputControllerWindows/rightShoulder,/XInputControllerWindows/leftShoulder]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a10b392e-2cf2-4ee7-9209-c09d4109e9bd
+    m_ActionName: Player/ChangePlayerLeft
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -196,12 +295,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 100
-  PickUpUI: {fileID: 6417940450437702498, guid: 1a2d5f5f004b9a242ad0217e50ab0ff0, type: 3}
+  PickUpUI: {fileID: 0}
   Pick: {fileID: 0}
   Bullet: {fileID: 7079072343191123150, guid: 929a87331cc8ec547af99cb910e13c40, type: 3}
-  Slime_mat: {fileID: 0}
+  slimeNear: {fileID: 0}
+  Error:
+  - {fileID: 8300000, guid: 8c24206df9625254a835f2640c56261f, type: 3}
+  onWater: 0
+  onWaterTimer: 1
+  Slime_mat: {fileID: 2100000, guid: 4859e8ee9d3c42a429e7967fbf7b232b, type: 2}
   num_bullets: 0
-  force: 0
+  force: 1
 --- !u!114 &2430305037092394252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,7 +331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8285a34439650ea4d98cde3ea0a46a75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Intensity: 50000
+  Intensity: 5000
   Mass: 2
   stiffness: 1
   damping: 0.8
@@ -241,7 +345,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 5c69dc90a23d7084a942713cbb629164, type: 2}
-  m_audioClip: {fileID: 8300000, guid: b13467e0a07f3e84db7571bb568d96da, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 0ec15d496b4b1aa46a6f2b191ef1a317, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

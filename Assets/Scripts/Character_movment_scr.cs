@@ -77,9 +77,12 @@ public class Character_movment_scr : MonoBehaviour
     }
     public void OnMove(InputValue movementValue)
     {
+       
         Vector2 movementVector = movementValue.Get<Vector2>();
         movementX = movementVector.x;
         movementY = movementVector.y;
+        
+
     }
     public void OnChangePlayer(InputValue movementValue)
     {
